@@ -8,7 +8,8 @@ namespace Core.Interfaces
         Task AddItemToListAsync(string listName, ShoppingItem item);
         Task<IEnumerable<ShoppingList>> GetAllShoppingListsAsync();
         Task MarkItemAsPurchasedAsync(string listName, string itemName);
-        Task<IEnumerable<ShoppingItem>> GetHistoryAsync(string listName);
+        Task<IEnumerable<ShoppingItem>> GetPurchasedItemsAsync(string listName);
+        Task UpdateItemInListAsync(string listName, ShoppingItem item);
     }
 
 }

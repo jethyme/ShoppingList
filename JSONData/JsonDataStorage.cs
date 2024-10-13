@@ -1,37 +1,27 @@
-﻿namespace JSONData
+﻿using Core.Interfaces;
+using Core.Models;
+using System.Text.Json;
+
+namespace JSONData
 {
-    using Core.Interfaces;
-    using Core.Models;
     using System.Text.Json;
 
     public class JsonDataStorage : IDataStorage
     {
-        private readonly string _filePath = "shoppingLists.json";
+        private readonly string _filePath = "shopping_lists.json";
 
-        public async Task SaveShoppingListAsync(ShoppingList list)
+        public async Task SaveDataAsync(IEnumerable<ShoppingList> lists)
         {
-            var lists = await LoadAllShoppingListsAsync();
-            var updatedLists = lists.ToList();
-            updatedLists.RemoveAll(l => l.Name == list.Name);
-            updatedLists.Add(list);
-
-            var json = JsonSerializer.Serialize(updatedLists);
-            await File.WriteAllTextAsync(_filePath, json);
+            var jsonData = JsonSerializer.Serialize(lists, new JsonSerializerOptions { WriteIndented = true });
+            await File.WriteAllTextAsync(_filePath, jsonData);
         }
 
-        public async Task<ShoppingList> LoadShoppingListAsync(string name)
+        public async Task<IEnumerable<ShoppingList>> LoadDataAsync()
         {
-            var lists = await LoadAllShoppingListsAsync();
-            return lists.FirstOrDefault(l => l.Name == name);
-        }
+            if (!File.Exists(_filePath)) return new List<ShoppingList>();
 
-        public async Task<IEnumerable<ShoppingList>> LoadAllShoppingListsAsync()
-        {
-            if (!File.Exists(_filePath))
-                return new List<ShoppingList>();
-
-            var json = await File.ReadAllTextAsync(_filePath);
-            return JsonSerializer.Deserialize<IEnumerable<ShoppingList>>(json) ?? new List<ShoppingList>();
+            var jsonData = await File.ReadAllTextAsync(_filePath);
+            return JsonSerializer.Deserialize<List<ShoppingList>>(jsonData) ?? new List<ShoppingList>();
         }
     }
 

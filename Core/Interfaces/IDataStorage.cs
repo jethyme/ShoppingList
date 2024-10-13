@@ -4,9 +4,8 @@ namespace Core.Interfaces
 {
     public interface IDataStorage
     {
-        Task SaveShoppingListAsync(ShoppingList list);
-        Task<ShoppingList> LoadShoppingListAsync(string name);
-        Task<IEnumerable<ShoppingList>> LoadAllShoppingListsAsync();
+        Task SaveDataAsync(IEnumerable<ShoppingList> lists);
+        Task<IEnumerable<ShoppingList>> LoadDataAsync();
     }
 
 }

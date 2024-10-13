@@ -4,6 +4,7 @@
     {
         public string Name { get; set; }
         public string Quantity { get; set; }
-        public bool IsPurchased { get; set; } = false;
+        public bool IsPurchased { get; set; }
     }
+
 }
