@@ -4,11 +4,9 @@ namespace Services.Operations
 {
     public class ViewShoppingListsOperation : IOperation
     {
-        private readonly IShoppingListService _service;
 
-        public ViewShoppingListsOperation(IShoppingListService service)
+        public ViewShoppingListsOperation()
         {
-            _service = service;
         }
 
         public async Task ExecuteAsync()

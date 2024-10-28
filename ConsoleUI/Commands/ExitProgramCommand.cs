@@ -8,7 +8,6 @@ namespace ConsoleUI.Commands
     public class ExitProgramCommand : IMenuItem
     {
         public string Name { get; set; }
-        private readonly IShoppingListService _service;
 
         public ExitProgramCommand(string name)
         {

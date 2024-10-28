@@ -21,7 +21,7 @@ namespace ConsoleUI
             Console.WriteLine("Нажмите любую кнопку для продолжения...");
             Console.ReadKey();
 
-            IDictionary<string, IMenuItem> menu = new Dictionary<string, IMenuItem>(); ;
+            var menu = new Dictionary<string, IMenuItem>(); ;
             menu.Add("1", new CreateShoppingListCommand(_service, "1. Создать новый список покупок"));
             menu.Add("2", new ViewShoppingListsCommand(_service, "2. Просмотреть список текущих списков покупок"));
             menu.Add("3", new ExitProgramCommand("3. Выйти из программы"));
@@ -30,7 +30,7 @@ namespace ConsoleUI
             while (true) await ShowMenu(menu);
         }
 
-        public static async Task ShowMessage(string message, ConsoleColor color)
+        public static void ShowMessage(string message, ConsoleColor color)
         {
             Console.ForegroundColor = color;
             Console.WriteLine(message);
@@ -42,7 +42,7 @@ namespace ConsoleUI
 
             public static async Task ShowMenu(IDictionary<string, IMenuItem> menu)
         {
-            
+            Console.WriteLine("Меню:");
             var index = 1;
             while (true)
             {
@@ -62,13 +62,13 @@ namespace ConsoleUI
 
                 
 
-            if (menu.ContainsKey(choice))
+            if (menu.TryGetValue(choice, out IMenuItem? value))
             {
-                await menu[choice].ExecuteAsync();
+                await value.ExecuteAsync();
             }
             else
             {
-                await ShowMessage("Неверный выбор. Попробуйте еще раз.", ConsoleColor.Red);
+                ShowMessage("Неверный выбор. Попробуйте еще раз.", ConsoleColor.Red);
             }
                             
         }

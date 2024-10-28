@@ -18,10 +18,28 @@ namespace ConsoleUI.Commands
         public async Task ExecuteAsync()
         {
             Console.Clear();
-            Console.Write("Введите название нового списка покупок: ");
-            var name = Console.ReadLine();
+            var name = string.Empty;
+
+            while (true)
+            {
+                Console.Write("Введите название нового списка покупок: ");
+                name = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    ConsoleUserInterface.ShowMessage("Название списка не может быть пустым. Пожалуйста, введите снова.", ConsoleColor.Red);
+                    continue;
+                }
+                if (await _service.CheckIfListNameExistsAsync(name))
+                {
+                    ConsoleUserInterface.ShowMessage("Список с таким названием уже существует. Пожалуйста, введите другое название.", ConsoleColor.Red);
+                    continue;
+                }
+                break;
+            }
+
             var createOperation = new CreateShoppingListOperation(_service, name);
             await createOperation.ExecuteAsync();
+
 
             while (true)
             {
@@ -29,7 +47,11 @@ namespace ConsoleUI.Commands
                 Console.WriteLine($"Добавьте товар в список покупок {name} (для завершения нажмите Enter):");
                 Console.Write($"{name}: ");
                 var input = Console.ReadLine();
-                if (input.ToLower() == "") break;
+                if (input.Equals("", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    Console.Clear();
+                    break;
+                }
 
                 var parts = input.Split(',');
                 var item = new ShoppingItem
@@ -44,7 +66,11 @@ namespace ConsoleUI.Commands
                     Console.WriteLine($"Добавьте параметр для товара {item.Name} (формат: ключ=значение, для завершения нажмите Enter):");
                     Console.Write($"{item.Name}: ");
                     var paramInput = Console.ReadLine();
-                    if (paramInput.ToLower() == "") break;
+                    if (paramInput.Equals("", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Console.Clear();
+                        break;
+                    }
 
                     var paramParts = paramInput.Split('=');
                     if (paramParts.Length == 2)
@@ -55,7 +81,7 @@ namespace ConsoleUI.Commands
                     }
                     else
                     {
-                        await ConsoleUserInterface.ShowMessage("Неверный формат. Используйте формат: ключ=значение.", ConsoleColor.Red);
+                        ConsoleUserInterface.ShowMessage("Неверный формат. Используйте формат: ключ=значение.", ConsoleColor.Red);
                     }
                 }
 

@@ -6,9 +6,10 @@ namespace Core.Interfaces
     {
         Task<IEnumerable<ShoppingList>> GetAllShoppingListsAsync();
         Task<IEnumerable<ShoppingItem>> GetPurchasedItemsAsync(string listName);
+        Task<bool> CheckIfListNameExistsAsync(string name);
 
-        List<ShoppingList>? shoppingLists { get; set; }
-        IDataStorage? dataStorage { get; set; }
+        List<ShoppingList>? ShoppingLists { get; set; }
+        IDataStorage? DataStorage { get; set; }
     }
 
 }

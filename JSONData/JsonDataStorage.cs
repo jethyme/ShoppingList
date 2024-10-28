@@ -2,7 +2,7 @@
 using Core.Models;
 using System.Text.Json;
 
-namespace JSONData
+namespace JsonData
 {
     public class JsonDataStorage : IDataStorage
     {

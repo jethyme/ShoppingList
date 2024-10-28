@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "ConsoleUI\Cons
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{111BE231-5A4C-42E7-BD8E-B5F1235B0D8E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JSONData", "JSONData\JSONData.csproj", "{98E95B38-B316-4E61-AE79-E95DCF07EA0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonData", "JSONData\JsonData.csproj", "{98E95B38-B316-4E61-AE79-E95DCF07EA0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

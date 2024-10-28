@@ -1,9 +1,9 @@
 ﻿using ConsoleUI;
 using Core.Interfaces;
-using JSONData;
+using JsonData;
 using Services;
 
-namespace Application
+namespace ShoppingList
 {
     class Program
     {

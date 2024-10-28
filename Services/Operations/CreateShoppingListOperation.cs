@@ -17,8 +17,8 @@ namespace Services.Operations
 
         public async Task ExecuteAsync()
         {
-            _service.shoppingLists.Add(new ShoppingList { Name = _listName });
-            await _service.dataStorage.SaveDataAsync(_service.shoppingLists);
+            _service.ShoppingLists.Add(new ShoppingList { Name = _listName });
+            await _service.DataStorage.SaveDataAsync(_service.ShoppingLists);
         }
 
     }

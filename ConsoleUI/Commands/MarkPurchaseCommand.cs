@@ -29,7 +29,7 @@ namespace ConsoleUI.Commands
             }
             else
             {
-                await ConsoleUserInterface.ShowMessage("Неверный выбор.", ConsoleColor.Red);
+                ConsoleUserInterface.ShowMessage("Неверный выбор.", ConsoleColor.Red);
             }
         }
     }

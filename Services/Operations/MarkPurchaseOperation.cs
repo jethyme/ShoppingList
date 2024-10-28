@@ -18,13 +18,13 @@ namespace Services.Operations
 
         public async Task ExecuteAsync()
         {
-            var list = _service.shoppingLists.FirstOrDefault(l => l.Name == _listName);
+            var list = _service.ShoppingLists.FirstOrDefault(l => l.Name == _listName);
             var item = list?.Items.FirstOrDefault(i => i.Name == _itemName);
             if (item != null)
             {
                 item.IsPurchased = true;
                 //item.PurchaseTime = DateTime.Now;
-                await _service.dataStorage.SaveDataAsync(_service.shoppingLists);
+                await _service.DataStorage.SaveDataAsync(_service.ShoppingLists);
             }
         }
 
