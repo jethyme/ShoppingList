@@ -40,54 +40,8 @@ namespace ConsoleUI.Commands
             var createOperation = new CreateShoppingListOperation(_service, name);
             await createOperation.ExecuteAsync();
 
-
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine($"Добавьте товар в список покупок {name} (для завершения нажмите Enter):");
-                Console.Write($"{name}: ");
-                var input = Console.ReadLine();
-                if (input.Equals("", StringComparison.CurrentCultureIgnoreCase))
-                {
-                    Console.Clear();
-                    break;
-                }
-
-                var parts = input.Split(',');
-                var item = new ShoppingItem
-                {
-                    Name = parts[0].Trim(),
-                    Quantity = parts.Length > 1 ? parts[1].Trim() : string.Empty
-                };
-
-                while (true)
-                {
-                    Console.Clear();
-                    Console.WriteLine($"Добавьте параметр для товара {item.Name} (формат: ключ=значение, для завершения нажмите Enter):");
-                    Console.Write($"{item.Name}: ");
-                    var paramInput = Console.ReadLine();
-                    if (paramInput.Equals("", StringComparison.CurrentCultureIgnoreCase))
-                    {
-                        Console.Clear();
-                        break;
-                    }
-
-                    var paramParts = paramInput.Split('=');
-                    if (paramParts.Length == 2)
-                    {
-                        var key = paramParts[0].Trim();
-                        var value = paramParts[1].Trim();
-                        item.AddOrUpdateParameter(key, value);
-                    }
-                    else
-                    {
-                        ConsoleUserInterface.ShowMessage("Неверный формат. Используйте формат: ключ=значение.", ConsoleColor.Red);
-                    }
-                }
-
-                var addOperation = new AddItemToListOperation(_service, name, item);
-                await addOperation.ExecuteAsync();
-            }
+            var addItem = new AddItemToListCommand(_service, "", name);
+            await addItem.ExecuteAsync();
         }
     }
 }

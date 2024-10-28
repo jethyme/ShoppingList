@@ -2,6 +2,8 @@
 using Core.Models;
 using Services.Operations;
 using System.Collections.Generic;
+using System;
+using System.Xml.Linq;
 
 namespace ConsoleUI.Commands
 {
@@ -20,21 +22,28 @@ namespace ConsoleUI.Commands
 
         public async Task ExecuteAsync()
         {
-            Console.Write("Введите номер товара для изменения: ");
-            if (int.TryParse(Console.ReadLine(), out int itemIndex) && itemIndex > 0 && itemIndex <= _list.Items.Count)
+            var back = new BackCommand("5. Вернуться в предыдущее меню", true);
+            while (back.Back)
             {
-                var item = _list.Items.ElementAt(itemIndex - 1);
-                Console.Write($"Введите новое количество для \"{item.Name}\": ");
-                var newQuantity = Console.ReadLine();
-                item.Quantity = newQuantity;
-                var updateItemInListOperation = new UpdateItemInListOperation(_service, _list.Name, item);
-                await updateItemInListOperation.ExecuteAsync();
-                Console.WriteLine($"Товар \"{item.Name}\" обновлен.");
-            }
-            else
-            {
-                ConsoleUserInterface.ShowMessage("Неверный выбор.", ConsoleColor.Red);
+                Console.Clear();
+                Console.WriteLine($"Список покупок \"{_list.Name}\":");
+                int index = 1;
+                foreach (var item in _list.Items)
+                {
+                    var status = item.IsPurchased ? "(куплен)" : "";
+                    Console.WriteLine($"{index}. {item.Name}, {item.Quantity} {status}");
+                    index++;
+                }
+
+                var menu = new Dictionary<string, IMenuItem>();
+                menu.Add("1", new AddItemToListCommand(_service, "1. Добавить товары", _list.Name));
+                menu.Add("2", new DeleteItemFromListCommand(_service, "2. Удалить товары", _list));
+                menu.Add("3", new AddParamCommand(_service, "3. Добавить параметры товару", _list));
+                menu.Add("4", new DeleteParamCommand(_service, "4. Удалить параметры товара", _list));
+                menu.Add("5", back);
+                await ConsoleUserInterface.ShowMenu(menu);
             }
         }
+
     }
 }

@@ -70,5 +70,27 @@ namespace ConsoleUI.Commands
                 await ConsoleUserInterface.ShowMenu(menu);
             }
         }
+
+        public static Dictionary<string, string> ViewParam(IShoppingListService service, string listName, ShoppingItem item)
+        {
+            var parameters = new Dictionary<string, string>();
+            var list = item.Parameters;
+            if (!list.Any())
+            {
+                ConsoleUserInterface.ShowMessage($"У товара \"{item.Name}\" нет параметров.", ConsoleColor.Red);
+                return parameters;
+            }
+            Console.Clear();
+            Console.WriteLine($"Параметры товара \"{item.Name}\":");
+            
+            int index = 1;
+            foreach (var par in list)
+            {
+                parameters[index.ToString()] = par.Key;
+                Console.WriteLine($"{index}. {par.Key} = {par.Value}");
+                index++;
+            }
+            return parameters;
+        }
     }
 }

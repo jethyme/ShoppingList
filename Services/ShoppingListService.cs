@@ -35,6 +35,16 @@ namespace Services
             return ShoppingLists.Any(l => l.Name.Equals(listName, StringComparison.OrdinalIgnoreCase));
         }
 
+        public async Task<bool> CheckIfItemNameExistsAsync(string listName, string itemName)
+        {
+            if (!ShoppingLists.Any())
+            {
+                await GetAllShoppingListsAsync();
+            }
+            var list = ShoppingLists.FirstOrDefault(l => l.Name.Equals(listName, StringComparison.OrdinalIgnoreCase));
+            return list?.Items.Any(i => i.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase)) ?? false;
+        }
+
     }
 
 

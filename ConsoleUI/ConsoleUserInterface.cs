@@ -40,7 +40,7 @@ namespace ConsoleUI
             Console.Clear();
         }
 
-            public static async Task ShowMenu(IDictionary<string, IMenuItem> menu)
+        public static async Task ShowMenu(IDictionary<string, IMenuItem> menu)
         {
             Console.WriteLine("Меню:");
             var index = 1;
@@ -72,5 +72,6 @@ namespace ConsoleUI
             }
                             
         }
+        
     }
 }

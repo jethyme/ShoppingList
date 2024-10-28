@@ -3,17 +3,19 @@ using Core.Models;
 
 namespace Services.Operations
 {
-    public class UpdateItemInListOperation : IOperation
+    public class DeleteParamOperation : IOperation
     {
         private readonly IShoppingListService _service;
         private readonly string _listName;
+        private readonly string _parKey;
         private readonly ShoppingItem _item;
 
-        public UpdateItemInListOperation(IShoppingListService service, string listName, ShoppingItem item)
+        public DeleteParamOperation(IShoppingListService service, string listName, ShoppingItem item, string parKey)
         {
             _service = service;
             _listName = listName;
             _item = item;
+            _parKey = parKey;
         }
 
         public async Task ExecuteAsync()
@@ -22,7 +24,7 @@ namespace Services.Operations
             var existingItem = list?.Items.FirstOrDefault(i => i.Name == _item.Name);
             if (existingItem != null)
             {
-                existingItem.Parameters = _item.Parameters;
+                existingItem.Parameters.Remove(_parKey);
                 await _service.DataStorage.SaveDataAsync(_service.ShoppingLists);
             }
         }
