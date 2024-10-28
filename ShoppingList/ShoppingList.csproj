@@ -10,7 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ConsoleUI\ConsoleUI.csproj" />
     <ProjectReference Include="..\Core\Core.csproj" />
-    <ProjectReference Include="..\JSONData\JsonData.csproj" />
+    <ProjectReference Include="..\JsonData\JsonData.csproj" />
     <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
