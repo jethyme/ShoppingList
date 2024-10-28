@@ -17,9 +17,11 @@ namespace ConsoleUI
         public async Task RunAsync()
         {
             Console.WriteLine("Добро пожаловать в программу для создания и управления списками покупок!");
-
+            Console.WriteLine("Нажмите любую кнопку для продолжения...");
+            Console.ReadKey();
             while (true)
             {
+                Console.Clear();
                 Console.WriteLine("\nМеню:");
                 Console.WriteLine("1. Создать новый список покупок");
                 Console.WriteLine("2. Просмотреть список текущих списков покупок");
@@ -48,17 +50,19 @@ namespace ConsoleUI
         }
         private static async Task CreateShoppingListAsync(IShoppingListService service)
         {
+            Console.Clear();
             Console.Write("Введите название нового списка покупок: ");
             var name = Console.ReadLine();
             var createOperation = new CreateShoppingListOperation(service, name);
             await createOperation.ExecuteAsync();
-
-            Console.WriteLine("Добавьте товары в список покупок (для завершения введите 'готово'):");
+            
             while (true)
             {
+                Console.Clear();
+                Console.WriteLine($"Добавьте товар в список покупок {name} (для завершения нажмите Enter):");
                 Console.Write($"{name}: ");
                 var input = Console.ReadLine();
-                if (input.ToLower() == "готово") break;
+                if (input.ToLower() == "") break;
 
                 var parts = input.Split(',');
                 var item = new ShoppingItem
@@ -66,6 +70,28 @@ namespace ConsoleUI
                     Name = parts[0].Trim(),
                     Quantity = parts.Length > 1 ? parts[1].Trim() : string.Empty
                 };
+
+                while (true)
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Добавьте параметр для товара {item.Name} (формат: ключ=значение, для завершения нажмите Enter):");
+                    Console.Write($"{item.Name}: ");
+                    var paramInput = Console.ReadLine();
+                    if (paramInput.ToLower() == "") break;
+
+                    var paramParts = paramInput.Split('=');
+                    if (paramParts.Length == 2)
+                    {
+                        var key = paramParts[0].Trim();
+                        var value = paramParts[1].Trim();
+                        item.AddOrUpdateParameter(key, value);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Неверный формат. Используйте формат: ключ=значение.");
+                    }
+                }
+
                 var addOperation = new AddItemToListOperation(service, name, item);
                 await addOperation.ExecuteAsync();
             }
@@ -76,9 +102,12 @@ namespace ConsoleUI
             if (!lists.Any())
             {
                 Console.WriteLine("Нет текущих списков покупок.");
+                Console.WriteLine("Нажмите любую кнопку для продолжения...");
+                Console.ReadKey();
                 return;
             }
 
+            Console.Clear();
             Console.WriteLine("Текущие списки покупок:");
             int index = 1;
             foreach (var list in lists)
@@ -102,6 +131,7 @@ namespace ConsoleUI
         {
             while (true)
             {
+                Console.Clear ();
                 Console.WriteLine($"\nСписок покупок \"{list.Name}\":");
                 int index = 1;
                 foreach (var item in list.Items)
@@ -176,11 +206,14 @@ namespace ConsoleUI
         private static async Task ViewPurchaseHistoryAsync(IShoppingListService service, ShoppingList list)
         {
             var purchasedItems = await service.GetPurchasedItemsAsync(list.Name);
+            Console.Clear();
             Console.WriteLine($"История покупок для списка \"{list.Name}\":");
             foreach (var item in purchasedItems)
             {
                 Console.WriteLine($"- {item.Name}, {item.Quantity} (отмечен как купленный)");
             }
+            Console.WriteLine("Нажмите любую кнопку для продолжения...");
+            Console.ReadKey();
         }
     }
 }

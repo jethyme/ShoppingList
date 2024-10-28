@@ -4,8 +4,6 @@ using System.Text.Json;
 
 namespace JSONData
 {
-    using System.Text.Json;
-
     public class JsonDataStorage : IDataStorage
     {
         private readonly string _filePath = "shopping_lists.json";
