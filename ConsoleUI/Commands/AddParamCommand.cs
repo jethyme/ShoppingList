@@ -35,7 +35,7 @@ namespace ConsoleUI.Commands
         private static async Task AddParamAsync(IShoppingListService service, string listName, ShoppingItem item)
         {
             
-            var parameters = ViewShoppingListsCommand.ViewParam(service, listName, item);
+            var parameters = ViewShoppingListsCommand.ViewParam(listName, item);
 
             var addParam = new AddParamToItemCommand(service, listName, item);
             await addParam.ExecuteAsync();

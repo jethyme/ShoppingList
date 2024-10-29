@@ -36,7 +36,7 @@ namespace ConsoleUI.Commands
         {
             while (true)
             {
-                var parameters = ViewShoppingListsCommand.ViewParam(service, listName, item);
+                var parameters = ViewShoppingListsCommand.ViewParam(listName, item);
                 Console.Write("Выберите параметр для удаления, введите номер (Enter, чтобы закончить): ");
                 var choice = Console.ReadLine();
                 if (choice.Equals("", StringComparison.CurrentCultureIgnoreCase))

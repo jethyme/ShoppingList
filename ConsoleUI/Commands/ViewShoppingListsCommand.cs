@@ -77,7 +77,7 @@ namespace ConsoleUI.Commands
             }
         }
 
-        public static Dictionary<string, string> ViewParam(IShoppingListService service, string listName, ShoppingItem item)
+        public static Dictionary<string, string> ViewParam(string listName, ShoppingItem item)
         {
             var parameters = new Dictionary<string, string>();
             var list = item.Parameters;
