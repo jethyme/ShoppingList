@@ -3,7 +3,7 @@ using Core.Interfaces;
 using JsonData;
 using Services;
 
-namespace ShoppingList
+namespace ShoppingLists
 {
     class Program
     {
