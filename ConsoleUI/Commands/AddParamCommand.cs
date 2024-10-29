@@ -28,14 +28,14 @@ namespace ConsoleUI.Commands
             }
             else
             {
-                ConsoleUserInterface.ShowMessage("Неверный выбор.", ConsoleColor.Red);
+                await ConsoleUserInterface.ShowMessageAsync("Неверный выбор.", ConsoleColor.Red);
             }
         }
 
         private static async Task AddParamAsync(IShoppingListService service, string listName, ShoppingItem item)
         {
             
-            var parameters = ViewShoppingListsCommand.ViewParam(listName, item);
+            var parameters = await ViewShoppingListsCommand.ViewParamAsync(listName, item);
 
             var addParam = new AddParamToItemCommand(service, listName, item);
             await addParam.ExecuteAsync();

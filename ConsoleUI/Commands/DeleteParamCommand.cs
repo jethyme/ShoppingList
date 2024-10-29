@@ -28,7 +28,7 @@ namespace ConsoleUI.Commands
             }
             else
             {
-                ConsoleUserInterface.ShowMessage("Неверный выбор.", ConsoleColor.Red);
+                await ConsoleUserInterface.ShowMessageAsync("Неверный выбор.", ConsoleColor.Red);
             }
         }
 
@@ -36,12 +36,12 @@ namespace ConsoleUI.Commands
         {
             while (true)
             {
-                var parameters = ViewShoppingListsCommand.ViewParam(listName, item);
+                var parameters = await ViewShoppingListsCommand.ViewParamAsync(listName, item);
                 Console.Write("Выберите параметр для удаления, введите номер (Enter, чтобы закончить): ");
                 var choice = Console.ReadLine();
                 if (choice.Equals("", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    ConsoleUserInterface.ShowMessage("Удаление закончено.", ConsoleColor.Green);
+                    await ConsoleUserInterface.ShowMessageAsync("Удаление закончено.", ConsoleColor.Green);
                     return;
                 }
                 if (parameters.TryGetValue(choice, out string? parKey))
@@ -51,7 +51,7 @@ namespace ConsoleUI.Commands
                 }
                 else
                 {
-                    ConsoleUserInterface.ShowMessage("Неверный выбор. Попробуйте еще раз.", ConsoleColor.Red);
+                    await ConsoleUserInterface.ShowMessageAsync("Неверный выбор. Попробуйте еще раз.", ConsoleColor.Red);
                 }
             }
         }

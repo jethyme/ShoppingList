@@ -28,12 +28,12 @@ namespace ConsoleUI.Commands
                 var input = Console.ReadLine();
                 if (input.Equals("", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    ConsoleUserInterface.ShowMessage($"Добавление товаров в список \"{_listName}\" закончено", ConsoleColor.Green);
+                    await ConsoleUserInterface.ShowMessageAsync($"Добавление товаров в список \"{_listName}\" закончено", ConsoleColor.Green);
                     return;
                 }
                 if (await _service.CheckIfItemNameExistsAsync(_listName, input))
                 {
-                    ConsoleUserInterface.ShowMessage($"Товар с названием \"{input}\" уже существует. Пожалуйста, введите другое название.", ConsoleColor.Red);
+                    await ConsoleUserInterface.ShowMessageAsync($"Товар с названием \"{input}\" уже существует. Пожалуйста, введите другое название.", ConsoleColor.Red);
                     continue;
                 }               
 

@@ -31,14 +31,17 @@ namespace ConsoleUI
             while (true) await ShowMenu(menu);
         }
 
-        public static void ShowMessage(string message, ConsoleColor color)
+        public static async Task ShowMessageAsync(string message, ConsoleColor color)
         {
-            Console.ForegroundColor = color;
-            Console.WriteLine(message);
-            Console.WriteLine("Нажмите любую кнопку для продолжения...");
-            Console.ResetColor();
-            Console.ReadKey();
-            Console.Clear();
+            await Task.Run(() =>
+            {
+                Console.ForegroundColor = color;
+                Console.WriteLine(message);
+                Console.WriteLine("Нажмите любую кнопку для продолжения...");
+                Console.ResetColor();
+                Console.ReadKey();
+                Console.Clear();
+            });
         }
 
         public static async Task ShowMenu(IDictionary<string, IMenuItem> menu)
@@ -69,7 +72,7 @@ namespace ConsoleUI
             }
             else
             {
-                ShowMessage("Неверный выбор. Попробуйте еще раз.", ConsoleColor.Red);
+                await ShowMessageAsync("Неверный выбор. Попробуйте еще раз.", ConsoleColor.Red);
             }
                             
         }

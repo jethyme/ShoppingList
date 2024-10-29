@@ -26,12 +26,12 @@ namespace ConsoleUI.Commands
                 name = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(name))
                 {
-                    ConsoleUserInterface.ShowMessage("Название списка не может быть пустым. Пожалуйста, введите снова.", ConsoleColor.Red);
+                    await ConsoleUserInterface.ShowMessageAsync("Название списка не может быть пустым. Пожалуйста, введите снова.", ConsoleColor.Red);
                     continue;
                 }
                 if (await _service.CheckIfListNameExistsAsync(name))
                 {
-                    ConsoleUserInterface.ShowMessage("Список с таким названием уже существует. Пожалуйста, введите другое название.", ConsoleColor.Red);
+                    await ConsoleUserInterface.ShowMessageAsync("Список с таким названием уже существует. Пожалуйста, введите другое название.", ConsoleColor.Red);
                     continue;
                 }
                 break;

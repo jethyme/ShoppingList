@@ -27,7 +27,7 @@ namespace ConsoleUI.Commands
                 var paramInput = Console.ReadLine();
                 if (paramInput.Equals("", StringComparison.CurrentCultureIgnoreCase))
                 {
-                    ConsoleUserInterface.ShowMessage($"Добавление параметров для товара \"{_item.Name}\" закончено", ConsoleColor.Green);
+                    await ConsoleUserInterface.ShowMessageAsync($"Добавление параметров для товара \"{_item.Name}\" закончено", ConsoleColor.Green);
                     return;
                 }
 
@@ -40,7 +40,7 @@ namespace ConsoleUI.Commands
                 }
                 else
                 {
-                    ConsoleUserInterface.ShowMessage("Неверный формат. Используйте формат: ключ=значение.", ConsoleColor.Red);
+                    await ConsoleUserInterface.ShowMessageAsync("Неверный формат. Используйте формат: ключ=значение.", ConsoleColor.Red);
                 }
             }
         }

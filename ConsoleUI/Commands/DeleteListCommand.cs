@@ -19,7 +19,7 @@ namespace ConsoleUI.Commands
             var lists = await _service.GetAllShoppingListsAsync();
             if (!lists.Any())
             {
-                ConsoleUserInterface.ShowMessage("Нет текущих списков покупок.", ConsoleColor.Red);
+                await ConsoleUserInterface.ShowMessageAsync("Нет текущих списков покупок.", ConsoleColor.Red);
                 return;
             }
             while (true)
@@ -41,7 +41,7 @@ namespace ConsoleUI.Commands
                     var listName = selectedList.Name;
                     var deleteListOperation = new DeleteListOperation(_service, listName);
                     await deleteListOperation.ExecuteAsync();
-                    ConsoleUserInterface.ShowMessage($"Список \"{listName}\" удалён.", ConsoleColor.Green);
+                    await ConsoleUserInterface.ShowMessageAsync($"Список \"{listName}\" удалён.", ConsoleColor.Green);
                     return;
                 }
                 else
@@ -51,7 +51,7 @@ namespace ConsoleUI.Commands
                         Console.Clear();
                         return;
                     }
-                    ConsoleUserInterface.ShowMessage("Неверный выбор. Попробуйте еще раз.", ConsoleColor.Red);
+                    await ConsoleUserInterface.ShowMessageAsync("Неверный выбор. Попробуйте еще раз.", ConsoleColor.Red);
                 }
             }
         }

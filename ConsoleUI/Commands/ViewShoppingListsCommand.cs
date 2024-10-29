@@ -19,7 +19,7 @@ namespace ConsoleUI.Commands
             var lists = await _service.GetAllShoppingListsAsync();
             if (!lists.Any())
             {
-                ConsoleUserInterface.ShowMessage("Нет текущих списков покупок.", ConsoleColor.Red);
+                await ConsoleUserInterface.ShowMessageAsync("Нет текущих списков покупок.", ConsoleColor.Red);
                 return;
             }
             while (true)
@@ -48,7 +48,7 @@ namespace ConsoleUI.Commands
                         Console.Clear() ;
                         return;
                     }
-                    ConsoleUserInterface.ShowMessage("Неверный выбор. Попробуйте еще раз.", ConsoleColor.Red);
+                    await ConsoleUserInterface.ShowMessageAsync("Неверный выбор. Попробуйте еще раз.", ConsoleColor.Red);
                 }
             }
         }
@@ -77,18 +77,20 @@ namespace ConsoleUI.Commands
             }
         }
 
-        public static Dictionary<string, string> ViewParam(string listName, ShoppingItem item)
+        public static async Task<Dictionary<string, string>> ViewParamAsync(string listName, ShoppingItem item)
         {
             var parameters = new Dictionary<string, string>();
             var list = item.Parameters;
+
             if (!list.Any())
             {
-                ConsoleUserInterface.ShowMessage($"У товара \"{item.Name}\" нет параметров.", ConsoleColor.Red);
+                await ConsoleUserInterface.ShowMessageAsync($"У товара \"{item.Name}\" нет параметров.", ConsoleColor.Red);
                 return parameters;
             }
+
             Console.Clear();
             Console.WriteLine($"Параметры товара \"{item.Name}\":");
-            
+
             int index = 1;
             foreach (var par in list)
             {
@@ -96,7 +98,9 @@ namespace ConsoleUI.Commands
                 Console.WriteLine($"{index}. {par.Key} = {par.Value}");
                 index++;
             }
+
             return parameters;
         }
+
     }
 }
