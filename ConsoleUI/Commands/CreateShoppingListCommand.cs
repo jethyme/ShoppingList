@@ -6,7 +6,7 @@ namespace ConsoleUI.Commands
 {
     public class CreateShoppingListCommand : IMenuItem
     {
-        public string Name { get; set; }
+        public string Name { get; }
         private readonly IShoppingListService _service;
 
         public CreateShoppingListCommand(IShoppingListService service, string name)

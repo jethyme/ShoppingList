@@ -6,7 +6,7 @@ namespace ConsoleUI.Commands
 {
     public class DeleteListsCommand : IMenuItem
     {
-        public string Name { get; set; }
+        public string Name { get; }
         private readonly IShoppingListService _service;
 
         public DeleteListsCommand(IShoppingListService service, string name)

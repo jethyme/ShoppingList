@@ -6,7 +6,7 @@ namespace JsonData
 {
     public class JsonDataStorage : IDataStorage
     {
-        private readonly string _filePath = "shopping_lists.json";
+        private const string _filePath = "shopping_lists.json";
 
         public async Task SaveDataAsync(IEnumerable<ShoppingList> lists)
         {

@@ -7,7 +7,7 @@ namespace ConsoleUI.Commands
 {
     public class BackCommand : IMenuItem
     {
-        public string Name { get; set; }
+        public string Name { get; }
         public bool Back {  get; set; } 
 
         public BackCommand(string name, bool notBack)

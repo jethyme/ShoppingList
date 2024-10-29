@@ -8,7 +8,7 @@ namespace ConsoleUI
 {
     public interface IMenuItem
     {
-        public string Name { get; set; }
+        public string Name { get; }
         public Task ExecuteAsync();
     }
 }

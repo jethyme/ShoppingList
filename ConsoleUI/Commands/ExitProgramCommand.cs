@@ -7,7 +7,7 @@ namespace ConsoleUI.Commands
 {
     public class ExitProgramCommand : IMenuItem
     {
-        public string Name { get; set; }
+        public string Name { get; }
 
         public ExitProgramCommand(string name)
         {

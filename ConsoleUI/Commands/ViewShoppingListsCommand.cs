@@ -6,7 +6,7 @@ namespace ConsoleUI.Commands
 {
     public class ViewShoppingListsCommand : IMenuItem
     {
-        public string Name { get; set; }
+        public string Name { get; }
         private readonly IShoppingListService _service;
 
         public ViewShoppingListsCommand(IShoppingListService service, string name)

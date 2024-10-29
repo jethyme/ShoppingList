@@ -7,7 +7,7 @@ namespace ConsoleUI.Commands
 {
     public class AddParamCommand : IMenuItem
     {
-        public string Name { get; set; }
+        public string Name { get; }
         private readonly IShoppingListService _service;
         private readonly ShoppingList _list;
 
