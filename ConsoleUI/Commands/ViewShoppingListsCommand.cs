@@ -33,8 +33,9 @@ namespace ConsoleUI.Commands
                     index++;
                 }
 
-                Console.Write("Выберите список покупок для управления (введите номер): ");
-                if (int.TryParse(Console.ReadLine(), out int listIndex) && listIndex > 0 && listIndex <= lists.Count())
+                Console.Write("Выберите список покупок для управления (Enter - вернуться назад): ");
+                var choice = Console.ReadLine();
+                if (int.TryParse(choice, out int listIndex) && listIndex > 0 && listIndex <= lists.Count())
                 {
                     var selectedList = lists.ElementAt(listIndex - 1);
                     await ManageShoppingListAsync(_service, selectedList);
@@ -42,6 +43,11 @@ namespace ConsoleUI.Commands
                 }
                 else
                 {
+                    if (choice.Equals("", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        Console.Clear() ;
+                        return;
+                    }
                     ConsoleUserInterface.ShowMessage("Неверный выбор. Попробуйте еще раз.", ConsoleColor.Red);
                 }
             }

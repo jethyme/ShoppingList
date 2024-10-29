@@ -24,7 +24,8 @@ namespace ConsoleUI
             var menu = new Dictionary<string, IMenuItem>(); ;
             menu.Add("1", new CreateShoppingListCommand(_service, "1. Создать новый список покупок"));
             menu.Add("2", new ViewShoppingListsCommand(_service, "2. Просмотреть список текущих списков покупок"));
-            menu.Add("3", new ExitProgramCommand("3. Выйти из программы"));
+            menu.Add("3", new DeleteListsCommand(_service, "3. Удалить список покупок"));
+            menu.Add("4", new ExitProgramCommand("4. Выйти из программы"));
 
             Console.Clear();
             while (true) await ShowMenu(menu);
