@@ -1,10 +1,12 @@
 ﻿using Core.Interfaces;
 using Core.Models;
 using Services.Operations;
+using System.Diagnostics.CodeAnalysis;
 using System.Xml.Linq;
 
 namespace ConsoleUI.Commands
 {
+    [ExcludeFromCodeCoverage]
     public class AddItemToListCommand : IMenuItem
     {
         public string Name { get; }

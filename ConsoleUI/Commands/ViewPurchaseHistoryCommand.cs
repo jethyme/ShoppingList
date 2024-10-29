@@ -2,9 +2,11 @@
 using Core.Models;
 using Services.Operations;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ConsoleUI.Commands
 {
+    [ExcludeFromCodeCoverage]
     public class ViewPurchaseHistoryCommand : IMenuItem
     {
         public string Name { get; }

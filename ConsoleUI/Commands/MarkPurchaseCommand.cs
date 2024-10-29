@@ -1,9 +1,11 @@
 ﻿using Core.Interfaces;
 using Core.Models;
 using Services.Operations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ConsoleUI.Commands
 {
+    [ExcludeFromCodeCoverage]
     public class MarkPurchaseCommand : IMenuItem
     {
         public string Name { get; }

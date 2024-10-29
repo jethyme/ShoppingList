@@ -3,9 +3,11 @@ using Core.Interfaces;
 using Services.Operations;
 using ConsoleUI.Commands;
 using static System.Net.Mime.MediaTypeNames;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ConsoleUI
 {
+    [ExcludeFromCodeCoverage]
     public class ConsoleUserInterface : IUserInterface
     {
         private readonly IShoppingListService _service;

@@ -4,9 +4,11 @@ using Services.Operations;
 using System.Collections.Generic;
 using System;
 using System.Xml.Linq;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ConsoleUI.Commands
 {
+    [ExcludeFromCodeCoverage]
     public class UpdateListCommand : IMenuItem
     {
         public string Name { get; }
