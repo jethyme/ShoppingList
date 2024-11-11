@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjectShoppingList", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBData", "DBData\DBData.csproj", "{49BAD36B-FACC-4C94-8243-031F81A706C1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbData.Tests", "DbData.Tests\DbData.Tests.csproj", "{4E4074E4-F6DB-4074-9707-0ECD8560BBD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{49BAD36B-FACC-4C94-8243-031F81A706C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49BAD36B-FACC-4C94-8243-031F81A706C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49BAD36B-FACC-4C94-8243-031F81A706C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E4074E4-F6DB-4074-9707-0ECD8560BBD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E4074E4-F6DB-4074-9707-0ECD8560BBD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E4074E4-F6DB-4074-9707-0ECD8560BBD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E4074E4-F6DB-4074-9707-0ECD8560BBD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

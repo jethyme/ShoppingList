@@ -1,9 +1,11 @@
 ﻿using Core.Interfaces;
 using Core.Models;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace JsonData
 {
+    [ExcludeFromCodeCoverage]
     public class JsonDataStorage : IDataStorage
     {
         private const string _filePath = "shopping_lists.json";

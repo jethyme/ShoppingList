@@ -8,7 +8,7 @@ namespace DBData.Models
         public int Id { get; set; }
         public string Key { get; set; }
         public string Value { get; set; }
-        public int ShoppingItemId { get; set; } // Foreign key
-        public ShoppingItem ShoppingItem { get; set; } // Navigation property
+        public int ShoppingItemId { get; set; } 
+        public ShoppingItem ShoppingItem { get; set; } 
     }
 }

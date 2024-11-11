@@ -11,8 +11,8 @@ namespace DBData.Models
         public string Quantity { get; set; }
         public bool IsPurchased { get; set; }
         public DateTime? PurchaseTime { get; set; }
-        public int ShoppingListId { get; set; } // Foreign key
-        public ShoppingList ShoppingList { get; set; } // Navigation property
-        public List<ShoppingItemParameter> Parameters { get; set; } = new List<ShoppingItemParameter>(); // Navigation property for parameters
+        public int ShoppingListId { get; set; } 
+        public ShoppingList ShoppingList { get; set; } 
+        public List<ShoppingItemParameter> Parameters { get; set; } = new List<ShoppingItemParameter>(); 
     }
 }
