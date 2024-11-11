@@ -7,7 +7,7 @@ namespace DBData.Data
     {
         public DbSet<ShoppingList> ShoppingLists { get; set; }
         public DbSet<ShoppingItem> ShoppingItems { get; set; }
-        public DbSet<ShoppingItemParameter> ShoppingItemParameters { get; set; } // Добавлено
+        public DbSet<ShoppingItemParameter> ShoppingItemParameters { get; set; } 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
