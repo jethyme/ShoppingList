@@ -37,8 +37,4 @@
     <Using Include="System.Threading.Tasks" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="TestResults\66a4b3b9-104a-4d2d-b10e-721f7a515202\" />
-  </ItemGroup>
-
 </Project>

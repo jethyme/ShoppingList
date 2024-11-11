@@ -2,6 +2,7 @@
 {
     public class ShoppingItem
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Quantity { get; set; }
         public Dictionary<string, string> Parameters { get; set; } = new Dictionary<string, string>();
