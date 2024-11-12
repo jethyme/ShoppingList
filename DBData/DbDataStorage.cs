@@ -42,6 +42,7 @@ namespace DBData
 
         public async Task<IEnumerable<ShoppingList>> LoadDataAsync()
         {
+            
             var dbLists = await _context.ShoppingLists
                 .Include(sl => sl.Items)
                 .ThenInclude(si => si.Parameters)
